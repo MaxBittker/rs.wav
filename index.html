@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Static Template</title>
+    <style>
+        *{
+            margin:0;
+            box-sizing: border-box;
+        }
+        button{
+            /* padding: 2em; */
+            width: 120px;
+            border-width: 5px;
+            font-size: 30px;
+            height: 120px;
+            /* border-width: 0; */
+        }
+        button:hover{
+            background-color: rgba(171, 166, 177, 0.513);
+
+        }
+        .active{
+            background-color: rgba(171, 166, 177, 0.842) !important;
+        }
+        @font-face {
+    font-family: 'RuneScape UF';
+    src: url('RuneScape-UF.woff2') format('woff2'),
+        url('RuneScape-UF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+
+}
+  
+* {
+    font-family: 'RuneScape UF';
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>This is a static template, there is no bundler or bundling involved!</h1>
+  </body>
+  <script>
+    let html = ""
+    function playAudio(i) {
+    let a = new Audio(`${i}.wav`)
+    a.play();
+    let btn = document.getElementById(i);
+    btn.classList.add("active");
+    a.onended = function() {
+        btn.classList.remove("active");
+    }
+}
+    
+    window.playAudio = playAudio
+    for(var i = 0; i <= 3941; i++) {
+        html+= `<button id="${i}" onClick="window.playAudio(${i})">${i}.wav</button>`
+    }
+    document.body.innerHTML = html
+  </script>
+</html>
